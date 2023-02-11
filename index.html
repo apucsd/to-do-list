@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://kit.fontawesome.com/5e28dbc410.js" crossorigin="anonymous"></script>
+
+    <title>Hello, world!</title>
+
+    <style>
+        .mystyle{
+
+            background-color: rgb(0, 0, 173);
+            color: rgb(246, 3, 3);
+            text-decoration: underline;
+      
+
+
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h1 class="text-center my-5 " id="h1">To Do List</h1>
+
+        <div class="d-md-flex justify-content-center">
+            <textarea name="" id="text-area" cols="50" rows="2" id="text-area"></textarea>
+            <input type="submit" value="Add To" class="btn btn-primary mx-3 px-5" id="input-btn">
+        </div>
+
+
+        <hr>
+        <section class="container">
+            <table class="table text-center" id="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Sl</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Add/Del</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody" class="">
+
+
+
+                </tbody>
+            </table>
+            <br>
+         <div class="text-center">  <button  id="clear-btn" class="btn btn-danger px-2 px-1 ">Clear All</button></div>
+
+        </section>
+    </main>
+    <script>
+
+
+//////////////////////
+        let count = 0;
+
+        document.getElementById('input-btn').addEventListener('click', function () {
+            count = count + 1;
+
+            let textValue = document.getElementById('text-area').value;
+         
+        
+            const tr = document.createElement('tr');
+            const td1 = document.createElement('td');
+            td1.innerText = `${count}`;
+            const td2 = document.createElement('td');
+            td2.innerText = `${textValue}`;
+            const td3 = document.createElement('td');
+            td3.innerHTML = ` <button class= 'btn btn-primary px-3 addBtn'>Add</button> <button class= 'btn btn-danger px-3 rBtn'>Remove</button>`;
+            const tbody = document.getElementById('tbody');
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            tr.appendChild(td3);
+            tbody.appendChild(tr);
+          
+         
+
+            //remove btn
+            const removeBtn = document.querySelectorAll('.rBtn');
+            for (const btn1 of removeBtn) {
+                btn1.addEventListener('click', function (e) {
+                    const parent = e.target.parentNode.parentNode;
+                    parent.style.display = 'none';
+                })
+            }
+            /// add btn
+            const addBtn = document.querySelectorAll('.addBtn');
+            for (const btn2 of addBtn) {
+                btn2.addEventListener('click', function (event) {
+
+                   const targetDescription = event.target.parentNode.parentNode.children[1];
+                   targetDescription.classList.add("mystyle");
+                   const targetSl = event.target.parentNode.parentNode.firstChild;
+                //   targetSl.innerHTML =  `<i class="fa-solid fa-check"></i>`;
+                    // td1.innerText =  td1.innerText = `${count}`;
+                   
+                  
+                    
+                   
+                 
+                })
+            }
+
+
+
+        });
+        document.getElementById('clear-btn').addEventListener('click',function(){
+            document.getElementById('table').style.display = 'none';
+        })
+    </script>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>
